@@ -17,7 +17,7 @@
     "update": "pnpm update",
     "outdated": "pnpm outdated",
     "security": "pnpm audit",
-    "deploy": "pnpm run check && git push origin main"
+    "deploy": "pnpm run check && pnpm run build && gh-pages -d docs"
   },
   "devDependencies": {
     "@playwright/test": "^1.47.1",
