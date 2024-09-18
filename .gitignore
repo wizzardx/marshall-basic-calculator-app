@@ -29,4 +29,3 @@ dist-ssr
 
 # Changes suggested by Claude.AI
 /docs
-!docs/.nojekyll
