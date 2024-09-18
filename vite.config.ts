@@ -3,8 +3,8 @@ import { defineConfig } from "vite";
 export default defineConfig({
   base: process.env.GITHUB_ACTIONS ? '/marshall-basic-calculator-app/' : '/',
   build: {
-    outDir: "docs", // Output to /docs folder
-    emptyOutDir: true, // Clean the output directory before build
+    outDir: "docs",
+    emptyOutDir: true,
   },
   plugins: [],
   test: {
