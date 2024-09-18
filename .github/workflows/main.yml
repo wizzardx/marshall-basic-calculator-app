@@ -41,6 +41,11 @@ jobs:
         path: playwright-report
 
   deploy:
+    needs: check
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
     - uses: actions/checkout@v3
     - name: Use Node.js
       uses: actions/setup-node@v3
