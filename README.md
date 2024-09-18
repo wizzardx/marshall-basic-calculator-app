@@ -15,7 +15,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 1. Clone the repository
    ```
-   git clone https://github.com/yourusername/marshall-basic-calculator-app.git
+   git clone https://github.com/wizzardx/marshall-basic-calculator-app.git
    ```
 
 2. Navigate to the project directory

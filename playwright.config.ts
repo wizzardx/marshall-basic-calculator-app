@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
 const baseURL = process.env.GITHUB_ACTIONS
-  ? 'https://yourusername.github.io/marshall-basic-calculator-app'
+  ? 'https://wizzardx.github.io/marshall-basic-calculator-app'
   : 'http://localhost:4173';
 
 export default defineConfig({
