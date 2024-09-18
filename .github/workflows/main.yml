@@ -41,11 +41,6 @@ jobs:
         path: playwright-report
 
   deploy:
-    needs: check
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-
-    steps:
     - uses: actions/checkout@v3
     - name: Use Node.js
       uses: actions/setup-node@v3
@@ -59,8 +54,11 @@ jobs:
       run: pnpm install
     - name: Build
       run: pnpm run build
+    - name: Ensure .nojekyll file exists
+      run: touch docs/.nojekyll
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./docs
+        enable_jekyll: false
