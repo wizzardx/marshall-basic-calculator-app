@@ -13,6 +13,7 @@ if (appElement) {
 
   appElement.innerHTML = `
     <div id="calculator">
+        Marshall's Basic Calculator App
       <div id="user-inputs">
           ${allTheInputs}
           <button id="add" type="button">Add</button>
