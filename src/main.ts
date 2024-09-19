@@ -3,10 +3,10 @@ import { setupAddButton, setupResetButton } from "./calculator.ts";
 
 const appElement = document.querySelector<HTMLDivElement>("#app");
 if (appElement) {
-  // Generate HTML code containing 10 numeric input boxes
+  // Generate HTML code containing 10 time input boxes
   let allTheInputs = "";
   for (let i = 1; i <= 10; i++) {
-    allTheInputs += `<input id="num${i}" type="number" />`;
+    allTheInputs += `<input id="time${i}" type="time" />`;
   }
 
   appElement.innerHTML = `
