@@ -2,9 +2,9 @@ name: CI/CD
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 permissions:
   contents: write
@@ -16,29 +16,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-    - name: Install pnpm
-      uses: pnpm/action-setup@v2
-      with:
-        version: 9
-    - name: Install dependencies
-      run: pnpm install
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
-    - name: Run checks
-      run: pnpm run check
-      env:
-        BASE_URL: http://localhost:4173
-    - name: Upload test results
-      if: always()
-      uses: actions/upload-artifact@v3
-      with:
-        name: playwright-report
-        path: playwright-report
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9
+      - name: Install dependencies
+        run: pnpm install
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run checks
+        run: pnpm run check
+        env:
+          BASE_URL: http://localhost:4173
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-report
+          path: playwright-report
 
   deploy:
     needs: check
@@ -46,24 +46,24 @@ jobs:
     if: github.ref == 'refs/heads/main'
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-    - name: Install pnpm
-      uses: pnpm/action-setup@v2
-      with:
-        version: 9
-    - name: Install dependencies
-      run: pnpm install
-    - name: Build
-      run: pnpm run build
-    - name: Ensure .nojekyll file exists
-      run: touch docs/.nojekyll
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./docs
-        enable_jekyll: false
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build
+        run: pnpm run build
+      - name: Ensure .nojekyll file exists
+        run: touch docs/.nojekyll
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          enable_jekyll: false

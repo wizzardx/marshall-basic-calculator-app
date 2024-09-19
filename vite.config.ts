@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: process.env.GITHUB_ACTIONS ? '/marshall-basic-calculator-app/' : '/',
+  base: process.env.GITHUB_ACTIONS ? "/marshall-basic-calculator-app/" : "/",
   build: {
     outDir: "docs",
     emptyOutDir: true,

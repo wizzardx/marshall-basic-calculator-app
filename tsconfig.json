@@ -23,7 +23,6 @@
     // 'node' provides types for Node.js APIs.
     // 'playwright' includes types for Playwright testing library.
     "types": ["node", "vitest/globals"]
-
   },
   "include": ["src", "e2e"]
 }
