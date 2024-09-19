@@ -16,11 +16,13 @@ if (appElement) {
         Marshall's Basic Calculator App
       <div id="user-inputs">
           ${allTheInputs}
-          <button id="add" type="button">Add</button>
-          <button id="reset" type="button">Reset</button>
+          <div id="buttons">
+            <button id="add" type="button">Add</button>
+            <button id="reset" type="button">Reset</button>
+          </div>
       </div>
       <div id="result">
-          Result: <span id="result-value"></span>
+          Result: &nbsp;<span id="result-value"></span>
       </div>
     </div>
   `;

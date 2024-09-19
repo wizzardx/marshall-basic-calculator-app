@@ -94,3 +94,20 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+div#calculator {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+div#user-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+div#buttons {
+    display: flex;
+    justify-content: space-evenly;
+}
