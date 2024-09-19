@@ -13,15 +13,15 @@ if (appElement) {
   }
 
   appElement.innerHTML = `
-    <div id="calculator"
+    <div id="calculator">
       <div id="user-inputs">
           ${allTheInputs}
           <button id="add" type="button">Add</button>
           <button id="reset" type="button">Reset</button>
       </div>
-        <div id="result">
-            Result: <span id="result-value"></span>
-        </div>
+      <div id="result">
+          Result: <span id="result-value"></span>
+      </div>
     </div>
     <div>
       <a href="https://vitejs.dev" target="_blank">
