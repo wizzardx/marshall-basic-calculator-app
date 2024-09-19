@@ -1,6 +1,4 @@
 import "./style.css";
-import typescriptLogo from "./typescript.svg";
-import viteLogo from "/vite.svg";
 import { setupAddButton, setupResetButton } from "./calculator.ts";
 
 const appElement = document.querySelector<HTMLDivElement>("#app");
