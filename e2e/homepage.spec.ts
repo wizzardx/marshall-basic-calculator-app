@@ -60,3 +60,11 @@ test("Pressing a Reset button should clear the inputs and the result", async ({
   // Check that the result is empty
   expect(await resultSpan.textContent()).toBe("");
 });
+
+test("The 'Add' button has the text 'Calculate' in it", async ({ page }) => {
+    await page.goto("/");
+
+    const addButton = await page.waitForSelector("button#add");
+    const text = await addButton.textContent();
+    expect(text).toBe("Calculate");
+});
