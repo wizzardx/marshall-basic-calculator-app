@@ -6,7 +6,10 @@ if (appElement) {
   // Generate HTML code containing 10 time input boxes
   let allTheInputs = "";
   for (let i = 1; i <= 10; i++) {
-    allTheInputs += `<input id="time${i}" type="time" />`;
+    allTheInputs += "<div class='input-and-error'>";
+    allTheInputs += `<input id="time${i}" type="text" />`;
+    allTheInputs += `<span id="time-error${i}" class="error-message"><strong></strong></span>`;
+    allTheInputs += "</div>";
   }
 
   appElement.innerHTML = `

@@ -111,3 +111,18 @@ div#buttons {
   display: flex;
   justify-content: space-evenly;
 }
+
+.input-and-error {
+  display: flex;
+  align-items: center;
+}
+
+.error-message {
+  color: red;
+  font-size: x-small;
+  text-align: left;
+}
+
+input {
+  width: 100%;
+}
