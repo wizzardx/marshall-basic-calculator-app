@@ -105,6 +105,7 @@ describe("setupAddButton", () => {
     expect(() => {
       wrappedButton.click()
     }).toThrow("Could not find element with selector #time1");
+  });
 });
 
 describe("setupResetButton", () => {
