@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "lint": "tsc --noEmit && eslint . --ext .ts,.tsx --max-warnings 0",
     "test": "NODE_OPTIONS='--no-warnings=ExperimentalWarning' vitest run",
+    "test:debug": "NODE_OPTIONS='--no-warnings=ExperimentalWarning' vitest run --silent=false",
     "test:e2e": "playwright test",
     "format": "eslint . --ext .ts,.tsx --fix && prettier --write .",
     "check": "pnpm run lint && pnpm run test && pnpm run build && pnpm run test:e2e && pnpm run security && echo 'All checks passed successfully!'",
