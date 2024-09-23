@@ -9,6 +9,7 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: process.env.CI ? "dot" : "html",
+  timeout: 10000, // Set timeout to 10 seconds (10000 milliseconds)
   use: {
     baseURL: baseURL,
     trace: "on-first-retry",
