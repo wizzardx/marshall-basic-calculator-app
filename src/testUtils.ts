@@ -89,7 +89,7 @@ export function wrapButton(button: HTMLButtonElement): WrappedButton {
 export type AddEventListenerType = <K extends keyof HTMLElementEventMap>(
   element: HTMLElement,
   type: K,
-  listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any,
+  listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => void,
   options?: boolean | AddEventListenerOptions
 ) => void;
 

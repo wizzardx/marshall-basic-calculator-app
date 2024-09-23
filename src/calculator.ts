@@ -45,7 +45,7 @@ export function setupAddButton(
 ) {
   addEventListener(element, "click", () => {
     let totalMinutes = 0;
-    let foundErrors: boolean = false;
+    let foundErrors = false;
     for (let i = 1; i <= TOTAL_INPUTS; i++) {
       const selector = `#time${i}`;
       const elem: HTMLInputElement | null = document.querySelector<HTMLInputElement>(selector);
