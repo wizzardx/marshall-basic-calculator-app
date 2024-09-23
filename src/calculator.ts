@@ -13,7 +13,7 @@ export function getErrMsg(error: unknown): string {
 
 export function setInputErrorMessage(errMsg: string, errMsgSpan: HTMLSpanElement | null, i: number) {
   if (errMsgSpan) {
-    errMsgSpan.innerHTML = errMsg;
+    errMsgSpan.textContent = errMsg;
     // If the error message is not empty, add some padding to the left to help space it a bit
     // from the input box, otherwise remove the padding.
     if (errMsg.length > 0) {
@@ -82,9 +82,9 @@ export function setupAddButton(
     const result = getResultElement()
 
     if (foundErrors) {
-      result.innerHTML = "";
+      result.textContent = "";
     } else {
-      result.innerHTML = formatMinutesToTimeString(totalMinutes);
+      result.textContent = formatMinutesToTimeString(totalMinutes);
     }
   });
 }
