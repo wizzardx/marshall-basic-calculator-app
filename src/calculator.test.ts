@@ -6,7 +6,7 @@ import {
   parseTextInputStringToMinutes,
   getErrMsg,
   setInputErrorMessage,
-  getResultElement,
+  getResultElement, TOTAL_INPUTS,
 } from "./calculator.ts";
 import {
   wrapButton, customAddEventListener
@@ -17,7 +17,7 @@ afterEach(() => {
 });
 
 function createAndAddErrorSpans() {
-  for (let i = 1; i <= 10; i++) {
+  for (let i = 1; i <= TOTAL_INPUTS; i++) {
     const errorSpan = document.createElement("span");
     errorSpan.id = `time-error${i}`;
     document.body.appendChild(errorSpan);
@@ -25,7 +25,7 @@ function createAndAddErrorSpans() {
 }
 
 function expectAllErrorSpansToBeEmpty() {
-  for (let i = 1; i <= 10; i++) {
+  for (let i = 1; i <= TOTAL_INPUTS; i++) {
     const errorSpan = document.querySelector<HTMLSpanElement>(`#time-error${i}`);
     expect(errorSpan?.innerHTML).toBe("");
   }
@@ -54,7 +54,7 @@ describe("setupAddButton", () => {
     document.body.appendChild(result);
 
     // Create the remaining inputs with empty user input
-    for (let i = 3; i <= 10; i++) {
+    for (let i = 3; i <= TOTAL_INPUTS; i++) {
       const time = document.createElement("input");
       time.id = `time${i}`;
       document.body.appendChild(time);
@@ -109,8 +109,8 @@ describe("setupAddButton", () => {
 
 describe("setupResetButton", () => {
   it("Deletes the contents of all the inputs and the result, too", () => {
-    // Create and populate 10 input elements
-    for (let i = 1; i <= 10; i++) {
+    // Create and populate TOTAL_INPUTS input elements
+    for (let i = 1; i <= TOTAL_INPUTS; i++) {
       const time = document.createElement("input");
       time.id = `time${i}`;
       time.type = "text";
@@ -149,7 +149,7 @@ describe("setupResetButton", () => {
     button.click();
 
     // Check that all the input fields are empty
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= TOTAL_INPUTS; i++) {
       const time = document.querySelector<HTMLInputElement>(`#time${i}`);
       expect(time?.value).toBe("");
     }

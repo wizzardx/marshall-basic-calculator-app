@@ -1,5 +1,8 @@
 import { AddEventListenerType } from "./testUtils";
 
+// An exported constant for the total number of user input controls:
+export const TOTAL_INPUTS = 10;
+
 export function getErrMsg(error: unknown): string {
   if (error instanceof Error) {
     return error.message;
@@ -43,7 +46,7 @@ export function setupAddButton(
   addEventListener(element, "click", () => {
     let totalMinutes = 0;
     let foundErrors: boolean = false;
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= TOTAL_INPUTS; i++) {
       const selector = `#time${i}`;
       const elem: HTMLInputElement | null = document.querySelector<HTMLInputElement>(selector);
 
@@ -88,7 +91,7 @@ export function setupAddButton(
 
 export function setupResetButton(element: HTMLButtonElement) {
   element.addEventListener("click", () => {
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= TOTAL_INPUTS; i++) {
       const time = document.querySelector<HTMLInputElement>(`#time${i}`);
       if (time) {
         time.value = "";
