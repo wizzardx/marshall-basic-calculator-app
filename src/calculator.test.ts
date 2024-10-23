@@ -295,3 +295,117 @@ describe("getResultElement", () => {
     }).toThrow("Could not find result element");
   });
 });
+
+describe("setupAddButton with subtraction", () => {
+  it("Can add and subtract times in the same calculation", () => {
+    // Create and set up input elements with proper time format
+    const inputs = [
+      { value: "1 h, 0 min", subtract: false },  // Changed from "1 h" to "1 h, 0 min"
+      { value: "30 min", subtract: true },
+      { value: "15 min", subtract: false }
+    ];
+
+    // Create elements for each input
+    inputs.forEach((input, index) => {
+      const i = index + 1;
+
+      const time = document.createElement("input");
+      time.id = `time${i}`;
+      time.type = "text";
+      time.value = input.value;
+      document.body.appendChild(time);
+
+      const subtract = document.createElement("input");
+      subtract.id = `subtract${i}`;
+      subtract.type = "checkbox";
+      subtract.checked = input.subtract;
+      document.body.appendChild(subtract);
+    });
+
+    // Create remaining empty inputs with their checkboxes
+    for (let i = inputs.length + 1; i <= TOTAL_INPUTS; i++) {
+      const time = document.createElement("input");
+      time.id = `time${i}`;
+      document.body.appendChild(time);
+
+      const subtract = document.createElement("input");
+      subtract.id = `subtract${i}`;
+      subtract.type = "checkbox";
+      subtract.checked = false;
+      document.body.appendChild(subtract);
+    }
+
+    // Add error spans
+    createAndAddErrorSpans();
+
+    const result = document.createElement("span");
+    result.id = "result-value";
+    document.body.appendChild(result);
+
+    // Set up and click the button
+    const button = document.createElement("button");
+    button.id = "add";
+    setupAddButton(button);
+    button.click();
+
+    // Expect 1h - 30min + 15min = 45min
+    expect(result.innerHTML).toBe("00:45");
+  });
+
+  it("Never returns a negative result", () => {
+    // Create first input (30 min)
+    const time1 = document.createElement("input");
+    time1.id = "time1";
+    time1.type = "text";
+    time1.value = "30 min";
+    document.body.appendChild(time1);
+
+    const subtract1 = document.createElement("input");
+    subtract1.id = "subtract1";
+    subtract1.type = "checkbox";
+    subtract1.checked = false;
+    document.body.appendChild(subtract1);
+
+    // Create second input (1 hour, subtracted)
+    const time2 = document.createElement("input");
+    time2.id = "time2";
+    time2.type = "text";
+    time2.value = "1 h, 0 min"; // Changed from "1 h" to "1 h, 0 min"
+    document.body.appendChild(time2);
+
+    const subtract2 = document.createElement("input");
+    subtract2.id = "subtract2";
+    subtract2.type = "checkbox";
+    subtract2.checked = true;
+    document.body.appendChild(subtract2);
+
+    // Create remaining empty inputs
+    for (let i = 3; i <= TOTAL_INPUTS; i++) {
+      const time = document.createElement("input");
+      time.id = `time${i}`;
+      document.body.appendChild(time);
+
+      const subtract = document.createElement("input");
+      subtract.id = `subtract${i}`;
+      subtract.type = "checkbox";
+      subtract.checked = false;
+      document.body.appendChild(subtract);
+    }
+
+    // Add error spans
+    createAndAddErrorSpans();
+
+    const result = document.createElement("span");
+    result.id = "result-value";
+    document.body.appendChild(result);
+
+    // Set up and click the button
+    const button = document.createElement("button");
+    button.id = "add";
+    setupAddButton(button);
+    button.click();
+
+    // 30min - 1h would be -30min, but we expect 00:00
+    expect(result.innerHTML).toBe("00:00");
+  });
+});

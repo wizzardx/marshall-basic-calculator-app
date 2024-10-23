@@ -46,44 +46,53 @@ export function setupAddButton(
   addEventListener(element, "click", () => {
     let totalMinutes = 0;
     let foundErrors = false;
+
     for (let i = 1; i <= TOTAL_INPUTS; i++) {
-      const selector = `#time${i}`;
-      const elem: HTMLInputElement | null = document.querySelector<HTMLInputElement>(selector);
+      const inputSelector = `#time${i}`;
+      const elem = document.querySelector<HTMLInputElement>(inputSelector);
 
       // Error out if the input control was not found
       if (!elem) {
-        throw new Error(`Could not find element with selector ${selector}`);
+        throw new Error(`Could not find element with selector ${inputSelector}`);
       }
 
-      const trimmed: string = elem.value.trim();
+      const trimmed = elem.value.trim();
       let errMsg = "";
-      const errMsgSpan: HTMLSpanElement | null = document.querySelector<HTMLSpanElement>(`#time-error${i}`);
+      const errMsgSpan = document.querySelector<HTMLSpanElement>(`#time-error${i}`);
 
       // Error out if the error message span was not found
       if (!errMsgSpan) {
         throw new Error(`Could not find error message span for input ${i}`);
       }
 
-      let parsedMinutes = 0;
       if (trimmed && trimmed.length > 0) {
         try {
-          parsedMinutes = parseTextInputStringToMinutes(trimmed);
+          let minutes = parseTextInputStringToMinutes(trimmed);
+
+          // Check for subtract checkbox, but don't require it
+          const checkbox = document.querySelector<HTMLInputElement>(`#subtract${i}`);
+          if (checkbox?.checked) {
+            minutes = -minutes;
+          }
+
+          totalMinutes += minutes;
         } catch (error) {
           errMsg = getErrMsg(error);
           foundErrors = true;
         }
       }
 
-      totalMinutes += parsedMinutes;
-
       // Set (or clear) the displayed error message for this input
       setInputErrorMessage(errMsg, errMsgSpan, i);
     }
-    const result = getResultElement()
+
+    const result = getResultElement();
 
     if (foundErrors) {
       result.textContent = "";
     } else {
+      // Ensure the result is never negative
+      totalMinutes = Math.max(0, totalMinutes);
       result.textContent = formatMinutesToTimeString(totalMinutes);
     }
   });
@@ -96,7 +105,14 @@ export function setupResetButton(element: HTMLButtonElement) {
       if (time) {
         time.value = "";
       }
+
+      // Reset checkbox if it exists
+      const checkbox = document.querySelector<HTMLInputElement>(`#subtract${i}`);
+      if (checkbox) {
+        checkbox.checked = false;
+      }
     }
+
     const result = document.querySelector<HTMLSpanElement>("#result-value");
     if (result) {
       result.innerHTML = "";

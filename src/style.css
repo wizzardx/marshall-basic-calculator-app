@@ -114,7 +114,9 @@ div#buttons {
 
 .input-and-error {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;  /* Add some spacing between rows */
 }
 
 .error-message {
@@ -125,4 +127,45 @@ div#buttons {
 
 input {
   width: 100%;
+}
+
+input[type="text"] {
+  flex: 1;
+  min-width: 0;
+  padding: 4px 8px;  /* Make inputs a bit more comfortable to use */
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.subtract-control {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  color: #666;
+  font-size: 0.9em;
+  user-select: none;  /* Prevents text selection when clicking */
+  cursor: pointer;    /* Shows clickable cursor on the whole label */
+}
+
+.subtract-control input[type="checkbox"] {
+  width: auto;
+}
+
+.subtract-control label {
+  width: auto;
+  cursor: pointer;
+  margin: 0;  /* Reset margin to align better with text */
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .subtract-control {
+    color: #999;  /* Lighter text for dark mode */
+  }
 }
