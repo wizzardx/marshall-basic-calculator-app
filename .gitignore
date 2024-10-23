@@ -29,3 +29,6 @@ dist-ssr
 
 # Changes suggested by Claude.AI
 /docs
+
+# Misc
+repopack-output.txt
