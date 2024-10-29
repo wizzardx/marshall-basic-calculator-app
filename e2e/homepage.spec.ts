@@ -23,7 +23,7 @@ test("Filling in two times and hitting the add button", async ({ page }) => {
 
   // Check the result
   const result = await resultSpan.textContent();
-  expect(result).toBe("00:37");
+  expect(result).toBe("37 min");
 });
 
 test("Pressing a Reset button should clear the inputs and the result", async ({
@@ -47,7 +47,7 @@ test("Pressing a Reset button should clear the inputs and the result", async ({
   const resultSpan = await page.waitForSelector("span#result-value");
   await resultSpan.waitForElementState("visible");
   const result = await resultSpan.textContent();
-  expect(result).toBe("00:08");
+  expect(result).toBe("8 min");
 
   // Click the reset button
   const resetButton = await page.waitForSelector("button#reset");
@@ -113,7 +113,7 @@ test("Adding up '15 min', '45 min', and '1 h 12 min' should give '2 h 12 min'", 
     const resultSpan = await page.waitForSelector("span#result-value");
     await resultSpan.waitForElementState("visible");
     const result = await resultSpan.textContent();
-    expect(result).toBe("02:12");
+    expect(result).toBe("2 h, 12 min");
 });
 
 test("When there is an error with input it should clear the result field", async ({ page }) => {
@@ -178,7 +178,7 @@ test("When checking the 'subtract' checkbox next to a time value, it gets subtra
   const result = await resultSpan.textContent();
 
   // Should be 1h - 30min + 15min = 45min
-  expect(result).toBe("00:45");
+  expect(result).toBe("45 min");
 
   // Click reset and verify everything clears including checkbox
   const resetButton = await page.waitForSelector("button#reset");
@@ -219,5 +219,5 @@ test("Checking subtract on a larger time than the total should give 00:00", asyn
   const result = await resultSpan.textContent();
 
   // Should be 30min - 1h = 00:00 (not -30min)
-  expect(result).toBe("00:00");
+  expect(result).toBe("0 min");
 });

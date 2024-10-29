@@ -71,7 +71,7 @@ describe("setupAddButton", () => {
     // Confirm that all the errors are unset:
     expectAllErrorSpansToBeEmpty();
 
-    expect(result.innerHTML).toBe("13:57");
+    expect(result.innerHTML).toBe("13 h, 57 min");
   });
 
   it("Throws an error if the error message span is not found", () => {
@@ -138,7 +138,7 @@ describe("setupResetButton", () => {
     addButton.click();
 
     // Quickly click and check the result:
-    expect(result?.innerHTML).toBe("125:40");
+    expect(result?.innerHTML).toBe("125 h, 40 min");
 
     // Create the reset button
     const button = document.createElement("button");
@@ -171,27 +171,27 @@ describe("setupResetButton", () => {
 
 describe("formatMinutesToTimeString", () => {
   it("Formats a number of minutes correctly", () => {
-    expect(formatMinutesToTimeString(754)).toBe("12:34");
+    expect(formatMinutesToTimeString(754)).toBe("12 h, 34 min");
   });
 
   it("Formats a number of minutes correctly", () => {
-    expect(formatMinutesToTimeString(83)).toBe("01:23");
+    expect(formatMinutesToTimeString(83)).toBe("1 h, 23 min");
   });
 
   it("Formats a number of minutes correctly", () => {
-    expect(formatMinutesToTimeString(0)).toBe("00:00");
+    expect(formatMinutesToTimeString(0)).toBe("0 min");
   });
 
   it("Formats a number of minutes correctly", () => {
-    expect(formatMinutesToTimeString(1439)).toBe("23:59");
+    expect(formatMinutesToTimeString(1439)).toBe("23 h, 59 min");
   });
 
   it("Formats a number of minutes correctly", () => {
-    expect(formatMinutesToTimeString(1)).toBe("00:01");
+    expect(formatMinutesToTimeString(1)).toBe("1 min");
   });
 
   it("Formats a number of minutes correctly", () => {
-    expect(formatMinutesToTimeString(59)).toBe("00:59");
+    expect(formatMinutesToTimeString(59)).toBe("59 min");
   });
 });
 
@@ -349,7 +349,7 @@ describe("setupAddButton with subtraction", () => {
     button.click();
 
     // Expect 1h - 30min + 15min = 45min
-    expect(result.innerHTML).toBe("00:45");
+    expect(result.innerHTML).toBe("45 min");
   });
 
   it("Never returns a negative result", () => {
@@ -406,6 +406,6 @@ describe("setupAddButton with subtraction", () => {
     button.click();
 
     // 30min - 1h would be -30min, but we expect 00:00
-    expect(result.innerHTML).toBe("00:00");
+    expect(result.innerHTML).toBe("0 min");
   });
 });

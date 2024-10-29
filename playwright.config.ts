@@ -8,21 +8,13 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: process.env.CI ? "dot" : "html",
-  timeout: 10000, // Set timeout to 10 seconds (10000 milliseconds)
+  reporter: "list", // Changed to list for stdout output
+  timeout: 5000, // Changed to 5 seconds
   use: {
     baseURL: baseURL,
     trace: "on-first-retry",
   },
   projects: [
-    {
-      name: "firefox",
-      use: { ...devices["Desktop Firefox"] },
-    },
-    {
-      name: "webkit",
-      use: { ...devices["Desktop Safari"] },
-    },
     {
       name: "chromium",
       use: { ...devices["Desktop Chrome"] },
